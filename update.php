@@ -10,13 +10,10 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-            
                                     <input type="hidden" value="<?php echo $row['id']; ?>" name="id">
                                     <div class="form-group">
-                                    <input type="text" class="form-control" name="task" value="<?php echo $row['task']; ?>">
+                                        <input type="text" class="form-control" name="task" value="<?php echo $row['task']; ?>">
                                     </div>
-                                
-                            
                             </div>
                             <div class="modal-footer">
                                <button class="btn btn-success" type="submit" id="button-addon2" name="update">Update</button>

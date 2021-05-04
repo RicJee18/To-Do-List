@@ -1,6 +1,4 @@
-<?php
-include_once('inc/db.php');
-?>
+<?php include_once('inc/db.php');?>
 <?php include_once('inc/header.php');?>
 
 
@@ -18,7 +16,7 @@ include_once('inc/db.php');
                   <div class="col-sm-12">
                      <form action="config.php" method="post" class="form ">
                         <div class="input-group ">
-                           <input type="text" class="form-control shadow-lg" placeholder=" " name="task">
+                           <input type="text" class="form-control shadow-lg" placeholder="Add task here ....." name="task">
                            <div class="input-group-append" >
                                <button class="btn btn-success shadow-lg" type="submit" id="button-addon2" name="submit">Add Task</button>
                                <a href="trash.php" class="btn btn-primary shadow-lg ml-5"><i class="fa fa-archive"></i> Trash Bin</a>
@@ -31,7 +29,7 @@ include_once('inc/db.php');
                 <table class="table table-hover mt-3">
                     <thead class="bg-dark text-white">
                         <tr>
-                        <th ></th>
+                         <th></th>
                         <th >Task</th>
                         <th >Added</th>
                         <th>Action</th>
@@ -39,11 +37,11 @@ include_once('inc/db.php');
                     </thead>
                     <tbody class="text-left">
                     <?php 
-                        // select all tasks if page is visited or refreshed
+            
                         $tasks = mysqli_query($conn, "SELECT * FROM task_list");
 
                         $i = "<input type='checkbox' id='check'>"; 
-                        // $i = 1;
+                        
                         while ($row = mysqli_fetch_array($tasks)) { ?>
                             <tr>
                                 <td> <?php echo $i; ?> </td>
