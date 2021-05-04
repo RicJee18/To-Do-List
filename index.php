@@ -6,56 +6,64 @@ include_once('inc/db.php');
 
 
 <div class="container mt-5 px-5">
-      <div class="row">
-          <div class="col">
-            <div class="card text-center">
+      <div class="row justify-content-center">
+          <div class="col-md-9 ">
+            <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
             <div class="card-header bg-dark text-white">
-                <h5>To Do Task List</h5>
+                <h5>TO DO LIST</h5>
             </div>
-              <div class="row">
-                  <div class="col px-5">
-                     <form action="config.php" method="post" class="form mt-4">
-                        <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Add New Task ... " name="task">
-                           <div class="input-group-append">
-                               <button class="btn btn-success" type="submit" id="button-addon2" name="submit">Add</button>
+
+            <div class="card-body">
+            <div class="row justify-content-center">
+                  <div class="col-sm-12">
+                     <form action="config.php" method="post" class="form ">
+                        <div class="input-group ">
+                           <input type="text" class="form-control shadow-lg" placeholder=" " name="task">
+                           <div class="input-group-append" >
+                               <button class="btn btn-success shadow-lg" type="submit" id="button-addon2" name="submit">Add Task</button>
+                               <a href="trash.php" class="btn btn-primary shadow-lg ml-5"><i class="fa fa-archive"></i> Trash Bin</a>
                            </div>
+                           <br>
                         </div>
                      </form>
                   </div>
               </div>
-                
-            <div class="card-body">
-                <table class="table">
-                    <thead>
+                <table class="table table-hover mt-3">
+                    <thead class="bg-dark text-white">
                         <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Task</th>
-                        <th scope="col">Action</th>
+                        <th ></th>
+                        <th >Task</th>
+                        <th >Added</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-left">
                     <?php 
                         // select all tasks if page is visited or refreshed
                         $tasks = mysqli_query($conn, "SELECT * FROM task_list");
 
-                        // $i = "<input type='checkbox'>"; 
-                        $i = 1;
+                        $i = "<input type='checkbox' id='check'>"; 
+                        // $i = 1;
                         while ($row = mysqli_fetch_array($tasks)) { ?>
                             <tr>
                                 <td> <?php echo $i; ?> </td>
                                 <td class="task"><?php echo $row['task']; ?> </td>
+                                <td class="task"><?php echo $row['created_at']; ?> </td>
                                 <td> 
-                                    <a href="config.php?del_task=<?php echo $row['id']?>">Remove</a> 
-                                    <a href="index.php?edit_task=<?php echo $row['id'] ?>">Edit</a> 
-                               
+                                    <a href="remove.php?del_id=<?php echo $row['id']?>" class="
+                                    btn btn-danger">Delete</a> 
+                                    <button class="btn btn-info" type="button" data-toggle="modal"data-target="#update_modal<?php echo $row['id']?>">Update</button>                     
                                 </td>
-                                
                             </tr>
-                        <?php $i++; } ?>	
+
+                                <?php include 'update.php';?>
+                                <?php $i++; } ?>
+
                     </tbody>
                 </table>
             </div>
+
+           
           
           </div>
       </div>
